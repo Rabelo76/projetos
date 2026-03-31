@@ -1,49 +1,222 @@
-/* Container principal */
-.conteudo {
-    display: grid;
-    /* Criamos um grid de 6 colunas para permitir divisões de 2 e 3 */
-    grid-template-columns: repeat(6, 1fr); 
-    gap: 30px;
-    max-width: 1100px;
-    width: 100%;
-    margin: 0 auto;
+/* =========================================
+   VARIÁVEIS E RESET
+   ========================================= */
+:root {
+    --primary: #ffd600;          /* Amarelo vibrante */
+    --bg-dark: #0f172a;          /* Azul escuro moderno */
+    --card-bg: rgba(255, 255, 255, 0.05); /* Transparência do vidro */
+    --text-main: #f8fafc;        /* Branco off-white */
+    --text-dim: #94a3b8;         /* Cinza para textos secundários */
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Configuração dos Cards Individuais */
-.link {
-    background: var(--card-bg);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    transition: all 0.4s ease;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 80px 20px 0;
+    overflow-x: hidden;
 }
 
-/* OS 3 PRIMEIROS CARDS (Linha de cima) */
-/* Cada um ocupa 2 das 6 colunas */
-.link:nth-child(-n+3) {
+/* Efeito de brilho de fundo (Blob) */
+body::before {
+    content: "";
+    position: fixed;
+    top: -100px;
+    right: -100px;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(255, 214, 0, 0.1) 0%, rgba(0,0,0,0) 70%);
+    z-index: -1;
+    filter: blur(60px);
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+header {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeIn 0.8s ease;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+}
+
+header h1 span {
+    color: var(--primary);
+}
+
+header p {
+    color: var(--text-dim);
+    margin-top: 10px;
+    font-size: 1.1rem;
+}
+
+/* =========================================
+   GRID ESTRUTURADO (3 em cima, 2 embaixo)
+   ========================================= */
+.conteudo {
+    display: grid;
+    /* Criamos 6 colunas para permitir a divisão por 3 e por 2 */
+    grid-template-columns: repeat(6, 1fr); 
+    gap: 30px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.link {
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.link:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Lógica de Posicionamento --- */
+
+/* Os 3 primeiros cards ocupam 2 colunas cada (3x2 = 6) */
+.link:nth-child(1),
+.link:nth-child(2),
+.link:nth-child(3) {
     grid-column: span 2;
 }
 
-/* OS 2 ÚLTIMOS CARDS (Linha de baixo) */
-/* Cada um ocupa 3 das 6 colunas */
+/* Os 2 últimos cards ocupam 3 colunas cada (2x3 = 6) */
 .link:nth-child(4),
 .link:nth-child(5) {
     grid-column: span 3;
-    max-width: 80%; /* Leve ajuste para não ficarem largos demais */
-    justify-self: center; /* Centraliza o card dentro do espaço de 3 colunas */
+    max-width: 85%; /* Evita que fiquem exageradamente largos */
+    justify-self: center; /* Centraliza na linha */
     width: 100%;
 }
 
-/* Ajuste para telas menores (Mobile) */
+/* =========================================
+   ELEMENTOS INTERNOS DO CARD
+   ========================================= */
+.link a {
+    text-decoration: none;
+    color: inherit;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.img-container {
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.imagemDoCard {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.link:hover .imagemDoCard {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.link h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Oculta imagem se o SRC estiver vazio */
+.imagemDoCard[src=""] {
+    display: none;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+footer {
+    width: 100%;
+    padding: 80px 0 40px;
+    margin-top: auto;
+    text-align: center;
+}
+
+.footer-conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+footer p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+
+.redes-sociais a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 5px 15px;
+    border: 1px solid var(--primary);
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.redes-sociais a:hover {
+    background-color: var(--primary);
+    color: var(--bg-dark);
+}
+
+/* =========================================
+   ANIMAÇÕES E RESPONSIVIDADE
+   ========================================= */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 @media (max-width: 900px) {
     .conteudo {
-        grid-template-columns: 1fr; /* Empilha um embaixo do outro no celular */
+        grid-template-columns: 1fr; /* No tablet/celular, tudo vira 1 coluna */
     }
     
-    .link:nth-child(-n+5) {
+    .link:nth-child(n) {
         grid-column: span 1;
         max-width: 100%;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
     }
 }
