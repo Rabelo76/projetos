@@ -1,173 +1,49 @@
-:root {
-    --primary: #ffd600;
-    --bg-dark: #0f172a;
-    --card-bg: rgba(255, 255, 255, 0.05);
-    --text-main: #f8fafc;
-    --text-dim: #94a3b8;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
-
-body {
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    padding: 80px 20px;
-    overflow-x: hidden;
-}
-
-/* Efeito de brilho de fundo */
-.blob {
-    position: fixed;
-    top: -100px;
-    right: -100px;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(255, 214, 0, 0.15) 0%, rgba(0,0,0,0) 70%);
-    z-index: -1;
-    filter: blur(50px);
-}
-
-header {
-    text-align: center;
-    margin-bottom: 60px;
-    animation: fadeInDown 0.8s ease;
-}
-
-header h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
-    letter-spacing: -1px;
-}
-
-header h1 span {
-    color: var(--primary);
-}
-
-header p {
-    color: var(--text-dim);
-    margin-top: 10px;
-    font-size: 1.1rem;
-}
-
-/* Layout em Grid Responsivo */
+/* Container principal */
 .conteudo {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
+    /* Criamos um grid de 6 colunas para permitir divisões de 2 e 3 */
+    grid-template-columns: repeat(6, 1fr); 
+    gap: 30px;
     max-width: 1100px;
     width: 100%;
+    margin: 0 auto;
 }
 
+/* Configuração dos Cards Individuais */
 .link {
     background: var(--card-bg);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-}
-
-.link:hover {
-    transform: translateY(-12px);
-    border-color: var(--primary);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-.link a {
-    text-decoration: none;
-    color: inherit;
-    padding: 40px 25px;
+    transition: all 0.4s ease;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    height: 100%;
 }
 
-.img-container {
+/* OS 3 PRIMEIROS CARDS (Linha de cima) */
+/* Cada um ocupa 2 das 6 colunas */
+.link:nth-child(-n+3) {
+    grid-column: span 2;
+}
+
+/* OS 2 ÚLTIMOS CARDS (Linha de baixo) */
+/* Cada um ocupa 3 das 6 colunas */
+.link:nth-child(4),
+.link:nth-child(5) {
+    grid-column: span 3;
+    max-width: 80%; /* Leve ajuste para não ficarem largos demais */
+    justify-self: center; /* Centraliza o card dentro do espaço de 3 colunas */
     width: 100%;
-    height: 160px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    border-radius: 15px;
-    background: rgba(255, 255, 255, 0.03);
 }
 
-.imagemDoCard {
-    max-width: 80%;
-    max-height: 80%;
-    object-fit: contain;
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
-    transition: transform 0.3s ease;
-}
-
-.link:hover .imagemDoCard {
-    transform: scale(1.1);
-}
-
-.link h3 {
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-    text-align: center;
-}
-
-.tag {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--primary);
-    font-weight: 700;
-    background: rgba(255, 214, 0, 0.1);
-    padding: 5px 12px;
-    border-radius: 20px;
-}
-
-footer {
-    margin-top: auto;
-    padding: 60px 0 30px;
-    width: 100%;
-    text-align: center;
-}
-
-footer p {
-    color: var(--text-dim);
-    font-size: 0.9rem;
-}
-
-.redes-sociais a {
-    text-decoration: none;
-    color: var(--text-main);
-    font-weight: 600;
-    font-size: 1rem;
-    transition: 0.3s;
-    border-bottom: 2px solid var(--primary);
-}
-
-.redes-sociais a:hover {
-    color: var(--primary);
-    letter-spacing: 1px;
-}
-
-/* Animações */
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Ajuste Mobile */
-@media (max-width: 600px) {
-    header h1 { font-size: 2.5rem; }
-    .conteudo { grid-template-columns: 1fr; }
+/* Ajuste para telas menores (Mobile) */
+@media (max-width: 900px) {
+    .conteudo {
+        grid-template-columns: 1fr; /* Empilha um embaixo do outro no celular */
+    }
+    
+    .link:nth-child(-n+5) {
+        grid-column: span 1;
+        max-width: 100%;
+    }
 }
