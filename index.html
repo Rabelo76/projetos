@@ -1,68 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus projetos</title>
+    <title>Portfolio | Seus Projetos</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
-        <h1>Meus projetos</h1>
+    <div class="blob"></div> <header>
+        <h1>Meus Projetos<span>.</span></h1>
+        <p>Uma vitrine das minhas tecnologias e aprendizados.</p>
     </header>
 
     <main>
         <div class="conteudo">
             <div class="link">
-                <div class="barraAmarela"></div>
                 <a href="Pesquisa PHP, XAMPP e Conexão.pdf">
-                    <img src="Captura de tela 2026-03-24 161702.png" alt="" class="imagemDoCard">
+                    <div class="img-container">
+                        <img src="Captura de tela 2026-03-24 161702.png" alt="PHP Search" class="imagemDoCard">
+                    </div>
                     <h3>Pesquisa PHP</h3>
+                    <span class="tag">Documentação</span>
                 </a>
             </div>
             
             <div class="link">
-                <div class="barraAmarela"></div>
-                <a href="https://linkteste.infinityfreeapp.com/crd/cadastro.php">
-                    <img src="if.png" alt="" class="imagemDoCard">
-                    <h3>Hospedagem PHP no InfinityFree</h3>
+                <a href="https://linkteste.infinityfreeapp.com/crd/cadastro.php" target="_blank">
+                    <div class="img-container">
+                        <img src="if.png" alt="InfinityFree" class="imagemDoCard">
+                    </div>
+                    <h3>Hospedagem PHP</h3>
+                    <span class="tag">Web App</span>
                 </a>
             </div>
             
             <div class="link">
-                <div class="barraAmarela"></div>
-                <a href="https://linkteste.infinityfreeapp.com/crd2/observacao.php">
-                    <img src="if2.png" alt="" class="imagemDoCard">
-                    <h3>Hospedagem PHP no InfinityFree 2</h3>
+                <a href="https://linkteste.infinityfreeapp.com/crd2/observacao.php" target="_blank">
+                    <div class="img-container">
+                        <img src="if2.png" alt="InfinityFree 2" class="imagemDoCard">
+                    </div>
+                    <h3>Hospedagem PHP 2</h3>
+                    <span class="tag">Web App</span>
                 </a>
             </div>
             
             <div class="link">
-                <div class="barraAmarela"></div>
-                <a href="https://rabelo76.github.io/lista-de-tarefas/">
-                    <img src="ldt.png" alt="" class="imagemDoCard">
-                    <h3>Lista de Tarefas (TO DO)</h3>
+                <a href="https://rabelo76.github.io/lista-de-tarefas/" target="_blank">
+                    <div class="img-container">
+                        <img src="ldt.png" alt="To Do List" class="imagemDoCard">
+                    </div>
+                    <h3>Lista de Tarefas</h3>
+                    <span class="tag">JavaScript</span>
                 </a>
             </div>
             
             <div class="link">
-                <div class="barraAmarela"></div>
                 <a href="Requisições HTTP, Parâmetros, Cabeçalhos e segurança HTTP, Media Types e Integração de APIs.pdf">
-                    <img src="requisições.png" alt="" class="imagemDoCard">
+                    <div class="img-container">
+                        <img src="requisições.png" alt="HTTP Requests" class="imagemDoCard">
+                    </div>
                     <h3>Requisições HTTP</h3>
+                    <span class="tag">API / Segurança</span>
                 </a>
             </div>
         </div>
     </main>
 
     <footer>
-    <div class="footer-conteudo">
-        <p>&copy; 2026 Seu Nome - Todos os direitos reservados</p>
+        <p>&copy; 2026 <strong>Seu Nome</strong> • Desenvolvedor</p>
         <div class="redes-sociais">
             <a href="https://github.com/rabelo76" target="_blank">GitHub</a>
         </div>
-    </div>
-</footer>
+    </footer>
 </body>
 </html>
